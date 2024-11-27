@@ -15,37 +15,22 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
+      - uses: oven-sh/setup-bun@v1
         with:
-          version: 9
-          run_install: false
-
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
-          cache: 'pnpm'
-
-      - name: Setup pnpm config
-        shell: bash
-        run: pnpm config set store-dir ~/.pnpm-store
+          bun-version: latest
 
       - name: Install dependencies
-        run: pnpm install
+        run: bun install
 
       - name: Check types
-        run: pnpm type-check
-
-      - name: Check Prettier
-        run: pnpm format:ci
+        run: bun run type-check
 
       - name: Check linting
-        run: pnpm lint
+        run: bun run lint
 
       - name: Check commits messages
         uses: wagoid/commitlint-github-action@v6
