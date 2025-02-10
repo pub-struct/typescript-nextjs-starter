@@ -39,18 +39,21 @@
 - 👷 PR Workflow — Run Type Check & Linters on Pull Requests
 - ⚙️ EditorConfig - Consistent coding styles across editors and IDEs
 - 🗂 Path Mapping — Import components or images using the `@` prefix
+- 🔐 CSP — Content Security Policy for enhanced security (default minimal policy)
+- 🧳 T3 Env — Type-safe environment variables
+- 🪧 Redirects — Easily add redirects to your application
 
 ## Quick Start
 
 The best way to start with this template is using [Create Next App](https://nextjs.org/docs/api-reference/create-next-app).
 
 ```
+# pnpm
+pnpm create next-app -e https://github.com/jpedroschmitz/typescript-nextjs-starter
 # yarn
 yarn create next-app -e https://github.com/jpedroschmitz/typescript-nextjs-starter
 # npm
 npx create-next-app -e https://github.com/jpedroschmitz/typescript-nextjs-starter
-# pnpm
-pnpm create next-app -e https://github.com/jpedroschmitz/typescript-nextjs-starter
 ```
 
 ### Development
@@ -83,6 +86,7 @@ List of websites that started off with Next.js TypeScript Starter:
 - [IKEA Low Price](https://github.com/Mayandev/ikea-low-price)
 - [hygraph.com](https://hygraph.com)
 - [rocketseat.com.br](https://www.rocketseat.com.br)
+- [vagaschapeco.com](https://vagaschapeco.com)
 - [unfork.vercel.app](https://unfork.vercel.app)
 - [cryptools.dev](https://cryptools.dev)
 - [Add yours](https://github.com/jpedroschmitz/typescript-nextjs-starter/edit/main/README.md)
@@ -108,7 +112,10 @@ List of websites that started off with Next.js TypeScript Starter:
 - `pnpm start` — Starts the application in production mode.
 - `pnpm type-check` — Validate code using TypeScript compiler.
 - `pnpm lint` — Runs ESLint for all files in the `src` directory.
+- `pnpm lint:fix` — Runs ESLint fix for all files in the `src` directory.
 - `pnpm format` — Runs Prettier for all files in the `src` directory.
+- `pnpm format:check` — Check Prettier list of files that need to be formatted.
+- `pnpm format:ci` — Prettier check for CI.
 
 ### Path Mapping
 
@@ -125,6 +132,22 @@ import avatar from '@/public/avatar.png';
 This starter uses pnpm by default, but this choice is yours. If you'd like to switch to Yarn/npm, delete the `pnpm-lock.yaml` file, install the dependencies with Yarn/npm, change the CI workflow, and Husky Git hooks to use Yarn/npm commands.
 
 > **Note:** If you use Yarn, make sure to follow these steps from the [Husky documentation](https://typicode.github.io/husky/troubleshoot.html#yarn-on-windows) so that Git hooks do not fail with Yarn on Windows.
+
+### Environment Variables
+
+We use [T3 Env](https://env.t3.gg/) to manage environment variables. Create a `.env.local` file in the root of the project and add your environment variables there.
+
+When adding additional environment variables, the schema in `./src/lib/env/client.ts` or `./src/lib/env/server.ts` should be updated accordingly.
+
+### Redirects
+
+To add redirects, update the `redirects` array in `./redirects.ts`. It's typed, so you'll get autocompletion for the properties.
+
+### CSP (Content Security Policy)
+
+The Content Security Policy (CSP) is a security layer that helps to detect and mitigate certain types of attacks, including Cross-Site Scripting (XSS) and data injection attacks. The CSP is implemented in the `next.config.ts` file.
+
+It contains a default and minimal policy that you can customize to fit your application needs. It's a foundation to build upon.
 
 ## License
 
