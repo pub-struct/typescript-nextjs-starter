@@ -1,23 +1,69 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.0.6/schema.json",
   "formatter": {
     "enabled": true,
     "formatWithErrors": false,
     "indentStyle": "space",
     "indentWidth": 2,
     "lineEnding": "lf",
-    "lineWidth": 80,
-    "attributePosition": "auto"
+    "attributePosition": "auto",
+    "lineWidth": 80
   },
-  "organizeImports": { "enabled": true },
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": {
+          "level": "on",
+          "options": {
+            "groups": [
+              ["@types/**"],
+              ":BLANK_LINE:",
+
+              ["react"],
+              ["next", "next/**", "next/image", "next/link", "next/font/**"],
+
+              ":BLANK_LINE:",
+
+              ["**/contexts/**"],
+
+              ["**/hooks/**"],
+
+              ":BLANK_LINE:",
+
+              ["**/ui/**", "**/components/**", "**/radix-ui/**"],
+
+              ":BLANK_LINE:",
+
+              ["**/icons/**", "lucide-react"],
+
+              ":BLANK_LINE:",
+
+              ["**/public/**"],
+
+              ":BLANK_LINE:",
+
+              ["**/services/**", "**/utils/**", "**/lib/**"]
+            ]
+          }
+        }
+      }
+    }
+  },
   "linter": {
     "enabled": true,
     "rules": {
       "recommended": false,
-      "a11y": { "useValidAnchor": "error" },
-      "style": { "useBlockStatements": "off" },
+      "a11y": {
+        "useValidAnchor": "error"
+      },
+      "style": {
+        "useBlockStatements": "off"
+      },
       "correctness": {
-        "noUnusedImports": "warn"
+        "noUnusedImports": {
+          "level": "warn",
+          "fix": "unsafe"
+        }
       }
     }
   },
@@ -31,18 +77,21 @@
       "bracketSpacing": true,
       "bracketSameLine": false,
       "quoteStyle": "single",
-      "attributePosition": "auto"
+      "attributePosition": "auto",
+      "lineWidth": 80
     }
   },
   "overrides": [
     {
-      "include": ["**/*.+(ts|tsx)"],
+      "includes": ["**/*.+(ts|tsx)"],
       "linter": {
         "rules": {
           "correctness": {
             "noInvalidUseBeforeDeclaration": "warn"
           },
-          "suspicious": { "noExplicitAny": "off" }
+          "suspicious": {
+            "noExplicitAny": "off"
+          }
         }
       }
     }
