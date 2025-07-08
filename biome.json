@@ -83,7 +83,7 @@
   },
   "overrides": [
     {
-      "includes": ["**/*.+(ts|tsx)"],
+      "includes": ["src/**/*.ts", "src/**/*.tsx"],
       "linter": {
         "rules": {
           "correctness": {
@@ -95,5 +95,8 @@
         }
       }
     }
-  ]
+  ],
+  "files": {
+    "includes": ["src/**/*.ts", "src/**/*.tsx"]
+  }
 }
